@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Pill, ShoppingCart, Sparkles } from 'lucide-react';
+import { Home, Pill, UserCheck, FileText, Package, Sparkles } from 'lucide-react';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -9,15 +9,17 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-content">
+        {/* Logo */}
         <Link href="/" className="logo">
           <div className="logo-icon">
             <Pill size={24} color="#667eea" />
           </div>
           <div className="logo-text">
-            FarmaCool <Sparkles size={16} className="animate-pulse" />
+            Farmacia <Sparkles size={16} className="animate-pulse" />
           </div>
         </Link>
 
+        {/* Enlaces de navegación */}
         <div className="nav-links">
           <Link
             href="/"
@@ -36,11 +38,27 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/ordenes"
-            className={`nav-link ${pathname.startsWith('/ordenes') ? 'active' : ''}`}
+            href="/tipo-medicamentos"
+            className={`nav-link ${pathname.startsWith('/tipo-medicamentos') ? 'active' : ''}`}
           >
-            <ShoppingCart size={18} />
-            <span>Órdenes</span>
+            <Package size={18} />
+            <span>Tipos</span>
+          </Link>
+
+          <Link
+            href="/medicos"
+            className={`nav-link ${pathname.startsWith('/medicos') ? 'active' : ''}`}
+          >
+            <UserCheck size={18} />
+            <span>Médicos</span>
+          </Link>
+
+          <Link
+            href="/recetas"
+            className={`nav-link ${pathname.startsWith('/recetas') ? 'active' : ''}`}
+          >
+            <FileText size={18} />
+            <span>Recetas</span>
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 import { Medicamento } from '@/types';
-import {Trash2, Calendar, Package, DollarSign } from 'lucide-react';
+import { Trash2, Calendar, Package, DollarSign, Tag } from 'lucide-react';
 
 interface Props {
   medicamento: Medicamento;
@@ -63,6 +63,29 @@ export default function MedicamentoCard({ medicamento, onDelete }: Props) {
 
       {/* Información del medicamento */}
       <div style={{ marginBottom: '2rem' }}>
+        {/* Tipo de medicamento */}
+        {medicamento.tipoMedicamento && (
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px',
+            marginBottom: '1rem'
+          }}>
+            <Tag size={16} color="#667eea" />
+            <span style={{ fontWeight: '600', color: '#333' }}>Tipo:</span>
+            <span style={{
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              color: 'white',
+              padding: '4px 12px',
+              borderRadius: '20px',
+              fontSize: '0.85rem'
+            }}>
+              {medicamento.tipoMedicamento.descripcionTipo}
+            </span>
+          </div>
+        )}
+
+        {/* Marca */}
         {medicamento.Marca && (
           <div style={{ 
             display: 'flex', 
@@ -83,6 +106,7 @@ export default function MedicamentoCard({ medicamento, onDelete }: Props) {
           </div>
         )}
         
+        {/* Presentación */}
         {medicamento.Presentacion && (
           <div style={{ 
             display: 'flex', 
@@ -103,6 +127,7 @@ export default function MedicamentoCard({ medicamento, onDelete }: Props) {
           </div>
         )}
 
+        {/* Precio */}
         <div style={{ 
           display: 'flex', 
           alignItems: 'center', 
@@ -119,6 +144,7 @@ export default function MedicamentoCard({ medicamento, onDelete }: Props) {
           </span>
         </div>
 
+        {/* Fecha de vencimiento */}
         {medicamento.fechaVencimiento && (
           <div style={{ 
             display: 'flex', 

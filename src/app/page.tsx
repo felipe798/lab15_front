@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Pill, ShoppingCart, TrendingUp, Heart, Zap, Star } from 'lucide-react';
+import { Pill, UserCheck, FileText, TrendingUp, Heart, Zap, Star, Package } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
           marginBottom: '2rem'
         }}>
           <Star size={16} />
-          <span>Sistema de Farmacia Estudiante</span>
+          <span>Sistema de Farmacia Completo</span>
           <Star size={16} />
         </div>
         
@@ -28,12 +28,12 @@ export default function HomePage() {
         </h1>
         
         <p className="subtitle">
-          Gestiona tu farmacia de manera <strong style={{color: '#667eea'}}>súper fácil</strong> y con estilo
+          Gestiona tu farmacia de manera <strong style={{color: '#667eea'}}>súper completa</strong> con médicos y recetas
         </p>
       </div>
 
       {/* Cards principales */}
-      <div className="grid grid-3" style={{ marginBottom: '3rem' }}>
+      <div className="grid grid-2" style={{ marginBottom: '3rem' }}>
         <Link href="/medicamentos" className="card-clickable">
           <div className="card">
             <div className="card-header">
@@ -61,17 +61,44 @@ export default function HomePage() {
           </div>
         </Link>
 
-        <Link href="/ordenes" className="card-clickable">
+        <Link href="/tipo-medicamentos" className="card-clickable">
+          <div className="card">
+            <div className="card-header">
+              <div className="card-icon orange-gradient">
+                <Package size={40} color="white" />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                Tipos de Medicamento
+              </h3>
+              <p style={{ color: '#666', marginBottom: '1rem' }}>
+                Categorías y clasificaciones
+              </p>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '5px',
+                color: '#ff7f50',
+                fontWeight: 'bold'
+              }}>
+                <span>Gestionar tipos</span>
+                <Zap size={16} className="animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        <Link href="/medicos" className="card-clickable">
           <div className="card">
             <div className="card-header">
               <div className="card-icon blue-gradient">
-                <ShoppingCart size={40} color="white" />
+                <UserCheck size={40} color="white" />
               </div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                Órdenes de Compra
+                Médicos
               </h3>
               <p style={{ color: '#666', marginBottom: '1rem' }}>
-                Gestiona las órdenes de medicamentos
+                Registro de médicos autorizados
               </p>
               <div style={{ 
                 display: 'flex', 
@@ -81,37 +108,39 @@ export default function HomePage() {
                 color: '#4facfe',
                 fontWeight: 'bold'
               }}>
-                <span>Ver órdenes</span>
+                <span>Ver médicos</span>
                 <Zap size={16} className="animate-pulse" />
               </div>
             </div>
           </div>
         </Link>
 
-        <div className="card">
-          <div className="card-header">
-            <div className="card-icon green-gradient">
-              <TrendingUp size={40} color="white" />
-            </div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-              Estadísticas
-            </h3>
-            <p style={{ color: '#666', marginBottom: '1rem' }}>
-              Reportes y análisis (próximamente...)
-            </p>
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              gap: '5px',
-              color: '#43e97b',
-              fontWeight: 'bold'
-            }}>
-              <span>Muy pronto</span>
-              <Heart size={16} className="animate-pulse" />
+        <Link href="/recetas" className="card-clickable">
+          <div className="card">
+            <div className="card-header">
+              <div className="card-icon green-gradient">
+                <FileText size={40} color="white" />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                Recetas Médicas
+              </h3>
+              <p style={{ color: '#666', marginBottom: '1rem' }}>
+                Gestión de recetas y dispensación
+              </p>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '5px',
+                color: '#43e97b',
+                fontWeight: 'bold'
+              }}>
+                <span>Ver recetas</span>
+                <Zap size={16} className="animate-pulse" />
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Sección características */}
@@ -134,9 +163,9 @@ export default function HomePage() {
               <Zap size={24} color="white" />
             </div>
             <h3 style={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-              Súper Rápido
+              Sistema Completo
             </h3>
-            <p style={{ color: '#666' }}>Gestiona todo en segundos</p>
+            <p style={{ color: '#666' }}>Medicamentos, médicos y recetas</p>
           </div>
           
           <div style={{ textAlign: 'center' }}>
@@ -176,6 +205,60 @@ export default function HomePage() {
             </h3>
             <p style={{ color: '#666' }}>Interfaz moderna y atractiva</p>
           </div>
+        </div>
+      </div>
+
+      {/* Información rápida */}
+      <div className="card" style={{ 
+        marginTop: '2rem', 
+        background: 'linear-gradient(135deg, #667eea, #764ba2)',
+        color: 'white'
+      }}>
+        <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+          🎯 ¿Qué puedes hacer?
+        </h3>
+        <div style={{ display: 'grid', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span>💊</span>
+            <span>Gestionar inventario de medicamentos por tipos</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span>👨‍⚕️</span>
+            <span>Registrar y administrar médicos autorizados</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span>📋</span>
+            <span>Crear recetas médicas como boletas completas</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span>📊</span>
+            <span>Ver estadísticas y reportes en tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Enlaces rápidos */}
+      <div className="card" style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333' }}>
+          🚀 Acciones rápidas
+        </h4>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/medicamentos/nuevo" className="btn btn-primary">
+            <Pill size={18} />
+            <span>Nuevo Medicamento</span>
+          </Link>
+          <Link href="/medicos/nuevo" className="btn btn-secondary">
+            <UserCheck size={18} />
+            <span>Nuevo Médico</span>
+          </Link>
+          <Link href="/recetas/nuevo" className="btn btn-success">
+            <FileText size={18} />
+            <span>Nueva Receta</span>
+          </Link>
+          <Link href="/tipo-medicamentos/nuevo" className="btn btn-outline">
+            <Package size={18} />
+            <span>Nuevo Tipo</span>
+          </Link>
         </div>
       </div>
     </div>

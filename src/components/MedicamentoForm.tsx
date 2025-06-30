@@ -1,7 +1,10 @@
+
 'use client';
-import { useState } from 'react';
-import { Medicamento } from '@/types';
+import { useState, useEffect } from 'react';
+import { Medicamento, TipoMedicamento } from '@/types';
 import { Save, X, Pill } from 'lucide-react';
+import api from '@/lib/api';
+import toast from 'react-hot-toast';
 
 interface Props {
   medicamento?: Medicamento;
@@ -19,21 +22,48 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
     stock: medicamento?.stock || 0,
     precioVentaUni: medicamento?.precioVentaUni || 0,
     precioVentaPres: medicamento?.precioVentaPres || 0,
+    CodTipoMed: medicamento?.CodTipoMed || undefined,
     Marca: medicamento?.Marca || '',
   });
+
+  const [tiposMedicamento, setTiposMedicamento] = useState<TipoMedicamento[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadTiposMedicamento();
+  }, []);
+
+  const loadTiposMedicamento = async () => {
+    try {
+      const response = await api.get('/tipo-medicamentos');
+      setTiposMedicamento(response.data);
+    } catch (error) {
+      toast.error('Error al cargar tipos de medicamento');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'number' ? parseFloat(value) || 0 : value
     }));
   };
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="form-container">
@@ -47,12 +77,13 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
             {isEditing ? 'Editar Medicamento 📝' : 'Nuevo Medicamento ✨'}
           </h1>
           <p className="subtitle">
-            {isEditing ? 'Actualiza la información del medicamento' : 'Agrega un nuevo medicamento genial'}
+            {isEditing ? 'Actualiza la información del medicamento' : 'Agrega un nuevo medicamento'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="form-grid">
+            {/* Nombre del medicamento */}
             <div className="form-group">
               <label className="form-label">
                 Nombre del Medicamento *
@@ -68,6 +99,27 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Tipo de medicamento */}
+            <div className="form-group">
+              <label className="form-label">
+                Tipo de Medicamento
+              </label>
+              <select
+                name="CodTipoMed"
+                value={formData.CodTipoMed || ''}
+                onChange={handleChange}
+                className="form-input"
+              >
+                <option value="">Seleccionar tipo...</option>
+                {tiposMedicamento.map((tipo) => (
+                  <option key={tipo.CodTipoMed} value={tipo.CodTipoMed}>
+                    {tipo.descripcionTipo}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Marca */}
             <div className="form-group">
               <label className="form-label">
                 Marca
@@ -82,6 +134,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Presentación */}
             <div className="form-group">
               <label className="form-label">
                 Presentación
@@ -96,6 +149,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Stock */}
             <div className="form-group">
               <label className="form-label">
                 Stock *
@@ -112,6 +166,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Precio unitario */}
             <div className="form-group">
               <label className="form-label">
                 Precio Unitario *
@@ -129,6 +184,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Precio presentación */}
             <div className="form-group">
               <label className="form-label">
                 Precio Presentación
@@ -145,6 +201,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Fecha de fabricación */}
             <div className="form-group">
               <label className="form-label">
                 Fecha de Fabricación
@@ -158,6 +215,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
               />
             </div>
 
+            {/* Fecha de vencimiento */}
             <div className="form-group">
               <label className="form-label">
                 Fecha de Vencimiento
@@ -172,6 +230,7 @@ export default function MedicamentoForm({ medicamento, onSubmit, onCancel, isEdi
             </div>
           </div>
 
+          {/* Botones de acción */}
           <div className="form-actions">
             <button
               type="button"
