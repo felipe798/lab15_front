@@ -1,9 +1,9 @@
 
 'use client';
 import { useState, useEffect } from 'react';
-import { Medicamento, TipoMedicamento } from '@/types';
 import { Save, X, Pill } from 'lucide-react';
-import api from '@/lib/api';
+import { Medicamento, TipoMedicamento } from '../types';
+import api from '../lib/api';
 import toast from 'react-hot-toast';
 
 interface Props {

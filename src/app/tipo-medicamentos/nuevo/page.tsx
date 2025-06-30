@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TipoMedicamento } from '@/types';
 import { Save, X, Package, Lightbulb } from 'lucide-react';
-import api from '@/lib/api';
+import { TipoMedicamento } from '../../../types';
+import api from '../../../lib/api';
 import toast from 'react-hot-toast';
 
 // Categorías predefinidas comunes

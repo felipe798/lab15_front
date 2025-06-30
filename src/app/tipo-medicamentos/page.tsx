@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { TipoMedicamento } from '@/types';
 import Link from 'next/link';
 import { Plus, Search, Package, Trash2, Edit, Eye, Tag } from 'lucide-react';
-import api from '@/lib/api';
+import { TipoMedicamento } from '../../types';
+import api from '../../lib/api';
 import toast from 'react-hot-toast';
 
 export default function TipoMedicamentosPage() {

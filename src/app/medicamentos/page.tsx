@@ -1,10 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Medicamento } from '@/types';
-import MedicamentoCard from '@/components/MedicamentoCard';
+import { Medicamento } from '../../types';
+import MedicamentoCard from '../../components/MedicamentoCard';
+import api from '../../lib/api';
 import Link from 'next/link';
 import { Plus, Search, Pill, Filter } from 'lucide-react';
-import api from '@/lib/api';
 import toast from 'react-hot-toast';
 
 export default function MedicamentosPage() {

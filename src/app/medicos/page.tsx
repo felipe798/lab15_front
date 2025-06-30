@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Medico } from '@/types';
 import Link from 'next/link';
 import { Plus, Search, UserCheck, Trash2, Phone, Mail, User } from 'lucide-react';
-import api from '@/lib/api';
+import { Medico } from '../../types';
+import api from '../../lib/api';
 import toast from 'react-hot-toast';
 
 export default function MedicosPage() {

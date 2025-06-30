@@ -1,9 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Receta } from '@/types';
+
 import Link from 'next/link';
 import { Plus, Search, FileText, Trash2, Calendar, User, Pill, DollarSign } from 'lucide-react';
-import api from '@/lib/api';
+// CAMBIAR:
+
+// POR:
+import { Receta } from '../../types';
+import api from '../../lib/api';
 import toast from 'react-hot-toast';
 
 export default function RecetasPage() {

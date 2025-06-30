@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Medico } from '@/types';
 import { Save, X, UserCheck } from 'lucide-react';
-import api from '@/lib/api';
+import { Medico } from '../../../types';
+import api from '../../../lib/api';
 import toast from 'react-hot-toast';
 
 export default function NuevoMedico() {
